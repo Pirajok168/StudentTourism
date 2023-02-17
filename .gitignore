@@ -1,0 +1,34 @@
+*.iml
+.gradle
+/local.properties
+/gradlew.bat
+/gradlew
+/gradle/
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build/
+
+# Project exclude paths
+/core/navigation/build/
+/core/navigation/build/intermediates/javac/debug/classes/
+/core/theme/build/
+/core/theme/build/intermediates/javac/debug/classes/
+/feature/auth/presentation/build/
+/feature/auth/presentation/build/intermediates/javac/debug/classes/
+/feature/profile/presentation/build/
+/feature/profile/presentation/build/intermediates/javac/debug/classes/
+/.gradle
+# Project exclude paths
+/androidApp/build/
+/androidApp/build/intermediates/javac/debug/classes/
+/feature/events/presentation/build/
+/feature/events/presentation/build/intermediates/javac/debug/classes/
+/feature/news/presentation/build/
+/feature/news/presentation/build/intermediates/javac/debug/classes/
+/shared/build/
+/shared/build/intermediates/javac/debug/classes/
