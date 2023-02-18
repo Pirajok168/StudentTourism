@@ -1,4 +1,4 @@
-package ru.android.stutravel.feature.filters.presentations
+package ru.android.stutravel.feature.filters.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.android.stutravel.feature.filters.presentations.viewmodel.Event
-import ru.android.stutravel.feature.filters.presentations.viewmodel.FilterSearchViewModel
+import ru.android.stutravel.feature.filters.presentation.viewmodel.Event
+import ru.android.stutravel.feature.filters.presentation.viewmodel.FilterSearchViewModel
 
 enum class FederalDistrict(val title: String) {
     None("Не выбрано"),

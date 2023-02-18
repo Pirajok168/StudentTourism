@@ -1,4 +1,4 @@
-package ru.android.stutravel.feature.filters.presentations
+package ru.android.stutravel.feature.filters.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,23 +12,23 @@ import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ru.android.stutravel.feature.filters.presentations.viewmodel.Event
-import ru.android.stutravel.feature.filters.presentations.viewmodel.FilterSearchViewModel
+import ru.android.stutravel.feature.filters.presentation.viewmodel.Event
+import ru.android.stutravel.feature.filters.presentation.viewmodel.FilterSearchViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun FoodScreen(
+fun TypeRoomScreen(
     filterSearchViewModel: FilterSearchViewModel,
     onBack: () -> Unit = {}
 ) {
     val uiState = filterSearchViewModel.uiState
+    val grouped = uiState.listAvailableTypeRoom
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                        Text(text = "Выберите тип питания")
+                   Text(text = "Выберите тип размещения")
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
@@ -48,27 +48,25 @@ fun FoodScreen(
 
 
 
-                items(uiState.listAvailableTypeFood, key = { item -> item  }) {
-                    Surface(
+            items(grouped, key = { item -> item  }) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .animateItemPlacement(),
+                    onClick = {
+                        filterSearchViewModel.event(Event.SelectRoom(it))
+                        onBack()
+                    },
+                    shape = MaterialTheme.shapes.small
+                ) {
+                    Text(
+                        text = it,
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .animateItemPlacement(),
-                        onClick = {
-                            filterSearchViewModel.event(Event.SelectTypeFood(it))
-                            onBack()
-                        },
-                        shape = MaterialTheme.shapes.small
-                    ) {
-                        Text(
-                            text = it.title,
-                            modifier = Modifier
-                                .padding(vertical = 8.dp)
-                        )
-                    }
+                            .padding(vertical = 8.dp)
+                    )
                 }
-
-
+            }
 
 
 

@@ -1,4 +1,4 @@
-package ru.android.stutravel.feature.filters.presentations
+package ru.android.stutravel.feature.filters.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

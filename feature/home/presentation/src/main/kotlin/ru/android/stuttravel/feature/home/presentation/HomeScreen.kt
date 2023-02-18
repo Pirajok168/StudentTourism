@@ -1,9 +1,6 @@
 package ru.android.stuttravel.feature.home.presentation
 
 
-import android.content.Context
-import android.location.LocationManager
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -24,21 +21,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.android.studenttourism.feature.home.presentation.R
-import ru.android.stutravel.feature.filters.presentations.SortedScreen
+import ru.android.stutravel.feature.filters.presentation.SortedScreen
 import ru.android.stuttravel.feature.home.presentation.componentUi.EventCard
 import ru.android.stuttravel.feature.home.presentation.componentUi.PopulationPlace
 import ru.android.stuttravel.feature.home.presentation.componentUi.WhatIsLookCard
 import ru.android.stuttravel.feature.home.presentation.viewmodel.Event
-import ru.android.stuttravel.feature.home.presentation.viewmodel.HomeState
 import ru.android.stuttravel.feature.home.presentation.viewmodel.HomeViewModel
 
 data class WhatIsLook(

@@ -1,4 +1,4 @@
-package ru.android.stutravel.feature.filters.presentations.navigation
+package ru.android.stutravel.feature.filters.presentation.navigation
 
 import androidx.navigation.NavType
 import ru.android.stuttravel.core.navigation.Route
