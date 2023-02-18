@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ru.android.studenttourism.feature.home.presentation.R
+import ru.android.stutravel.feature.filters.presentation.SortedScreen
 import ru.android.stuttravel.feature.home.presentation.componentUi.EventCard
 import ru.android.stuttravel.feature.home.presentation.componentUi.PopulationPlace
 import ru.android.stuttravel.feature.home.presentation.componentUi.WhatIsLookCard
@@ -56,12 +57,15 @@ fun HomeScreen(
     toNewsScreen: ()->Unit
 ) {
     val uiState = homeViewModel.homeState
-
+    val list by homeViewModel.filteredList.collectAsState(initial = emptyList())
     LaunchedEffect(key1 = Unit, block = {
         if (uiState.mostPopular.isEmpty()) {
             homeViewModel.event(Event.LoadDisplayData)
         }
 
+        if (list.isEmpty()) {
+            homeViewModel.event(Event.LoadAll)
+        }
 
     })
     val listIcon = listOf<WhatIsLook>(
@@ -356,29 +360,13 @@ fun HomeScreen(
                             )
                         }
                     }
-//                Row(
-//                    modifier = Modifier
-//                        .horizontalScroll(rememberScrollState())
-//                        .padding(PaddingValues(vertical = 16.dp, horizontal = 16.dp)),
-//                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-//                ) {
-//
-//                    (0..3).forEach {
-//                        EventCard(
-//                            modifier = Modifier
-//                                .size(230.dp, 230.dp),
-//                            label = "Посещение Центра боевой славы и Мелекесского гарнизона",
-//                            image = painterResource(id = R.drawable.previewimage)
-//                        )
-//                    }
-//
-//                }
+
                 }
 
 
             }
         } else {
-
+            SortedScreen(it, list, toViewAboutHouse)
 
         }
     }

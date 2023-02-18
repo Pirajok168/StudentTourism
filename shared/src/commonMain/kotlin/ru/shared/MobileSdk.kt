@@ -13,6 +13,8 @@ import ru.shared.feature.booking.data.bookingModule
 import ru.shared.feature.dormitories.data.dormitoriesModule
 import ru.shared.feature.event.data.IRepoEvent
 import ru.shared.feature.event.data.searchEventsModule
+import ru.shared.feature.filters.data.IRepoFilters
+import ru.shared.feature.filters.data.moduleFilters
 import ru.shared.feature.home.data.IRepositoryHome
 import ru.shared.feature.home.data.homeDormitoriesModule
 import ru.shared.feature.labs.data.searchLabsModule
@@ -42,7 +44,7 @@ object MobileSdk {
                 platformConf,
                 dormitoriesDatabasesModule,
                 dormitoriesModule,
-
+                moduleFilters,
                 profileModule,
                 dataStoreModule,
                 domainApi,
@@ -81,4 +83,6 @@ val MobileSdk.IAuthSettingsRepository: IAuthSettingsRepository
 val MobileSdk.IRepoBooking: IRepoBooking
     get() = MobileSdk.di.instance()
 
+val MobileSdk.IRepoFilters: IRepoFilters
+    get() = MobileSdk.di.instance()
 

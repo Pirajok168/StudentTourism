@@ -4,7 +4,7 @@ plugins{
 }
 
 android {
-    namespace = "ru.android.studenttourism.feature.home.presentation"
+    namespace = "ru.android.stuttravel.feature.filters.presentation"
     compileSdk = 33
 
     defaultConfig {
@@ -34,8 +34,8 @@ android {
 dependencies{
     implementation(project(":core:navigation"))
     implementation(project(":core:theme"))
-    implementation(project(":feature:filters:presentation"))
     implementation(project(mapOf("path" to ":shared")))
+    //  implementation(project(":umbrelladi"))
     val compose_version = "1.3.3"
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")

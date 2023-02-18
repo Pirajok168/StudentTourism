@@ -7,17 +7,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import ru.shared.IEventRepo
+import ru.shared.IRepoFilters
 import ru.shared.ISearchDormitories
 import ru.shared.MobileSdk
 import ru.shared.core.model.wrapper.FlowResponse
 import ru.shared.core.model.wrapper.ResponseError
 import ru.shared.feature.event.data.IRepoEvent
 import ru.shared.feature.event.data.model.PresentationEvent
+import ru.shared.feature.filters.data.IRepoFilters
 import ru.shared.feature.home.data.IRepositoryHome
 import ru.shared.feature.home.data.model.MostPopular
 import ru.shared.feature.home.data.model.RecommendedDormitories
@@ -46,23 +50,28 @@ class HomeViewModel  constructor(
 ) : ViewModel() {
     private val repositoryHome: IRepositoryHome = MobileSdk.ISearchDormitories
     private val repositoryEvent: IRepoEvent = MobileSdk.IEventRepo
+    private val filters: IRepoFilters = MobileSdk.IRepoFilters
     var homeState: HomeState by mutableStateOf(HomeState())
     private val mutex = Mutex()
 
-
+    val filteredList = filters.filteredData
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     fun event(event: Event) {
         when (event) {
             is Event.Search -> homeState = homeState.copy(isSearch = true)
             is Event.Searching -> {
-
+                homeState = homeState.copy(searchValue = event.value)
+                viewModelScope.launch(Dispatchers.IO) {
+                    filters.searchByCity(event.value)
+                }
 
             }
             Event.CloseSearch -> {
                 homeState = homeState.copy(isSearch = false)
             }
             Event.LoadAll -> {
-
+                viewModelScope.launch(Dispatchers.IO) { filters.loadAllDataDormitories() }
             }
             Event.LoadDisplayData -> {
                 viewModelScope.launch(Dispatchers.IO) {
@@ -99,14 +108,16 @@ class HomeViewModel  constructor(
 
                         }
                         is FlowResponse.Loading -> {
-                            if(!it.isLoading)
+                            if(!it.isLoading) {
                                 loadEvent()
+                            }
                             homeState = homeState.copy(
                                 loading = it.isLoading,
                             )
                         }
 
                         is FlowResponse.Success -> {
+                            viewModelScope.launch(Dispatchers.IO) { filters.loadAllDataDormitories() }
                             homeState = homeState.copy(
                                 mostPopular = it.data
                             )
