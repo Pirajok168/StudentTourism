@@ -1,0 +1,27 @@
+CREATE TABLE Profile(
+    id TEXT PRIMARY KEY NOT NULL ,
+    username TEXT NOT NULL ,
+    email TEXT NOT NULL ,
+    userRole TEXT NOT NULL ,
+    name TEXT NOT NULL ,
+    phone TEXT NOT NULL ,
+    studentRoleType TEXT NOT NULL ,
+    lastName TEXT NOT NULL,
+    universityName TEXT NOT NULL,
+    middleName TEXT NOT NULL,
+     firstName TEXT NOT NULL,
+    gender TEXT NOT NULL,
+    departureCity TEXT NOT NULL,
+    birthday TEXT NOT NULL,
+    WoS TEXT NOT NULL
+);
+
+
+getUserProfile:
+    SELECT * FROM Profile;
+
+
+
+setProfile:
+    INSERT OR REPLACE INTO Profile(id, username, email, userRole, name, phone, studentRoleType, lastName, universityName, middleName, gender, departureCity, birthday, WoS, firstName)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);

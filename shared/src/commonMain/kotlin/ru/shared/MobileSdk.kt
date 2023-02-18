@@ -14,6 +14,8 @@ import ru.shared.feature.event.data.searchEventsModule
 import ru.shared.feature.home.data.IRepositoryHome
 import ru.shared.feature.home.data.homeDormitoriesModule
 import ru.shared.feature.labs.data.searchLabsModule
+import ru.shared.feature.profile.data.IRepoProfile
+import ru.shared.feature.profile.data.profileModule
 import ru.shared.feature.seeInfoDormitories.data.IRepoGetInfo
 import ru.shared.feature.seeInfoDormitories.data.infoModule
 import kotlin.native.concurrent.ThreadLocal
@@ -38,6 +40,8 @@ object MobileSdk {
                 platformConf,
                 dormitoriesDatabasesModule,
                 dormitoriesModule,
+
+                profileModule,
                 dataStoreModule,
                 domainApi,
                 authModule,
@@ -58,6 +62,8 @@ val MobileSdk.IAuthRepository: IAuthRepository
 val MobileSdk.ISearchDormitories: IRepositoryHome
     get() = MobileSdk.di.instance()
 
+val MobileSdk.IRepoProfile: IRepoProfile
+    get() = MobileSdk.di.instance()
 
 val MobileSdk.IInfoDormitories: IRepoGetInfo
     get() = MobileSdk.di.instance()
