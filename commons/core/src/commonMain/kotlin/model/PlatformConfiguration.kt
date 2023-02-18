@@ -1,0 +1,3 @@
+package model
+
+expect class PlatformConfiguration

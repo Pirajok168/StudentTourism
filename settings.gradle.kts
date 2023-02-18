@@ -16,6 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "StudentTourism"
 include(":androidApp")
 include(":shared")
+include(":commons:core")
 
 
 include(":feature:auth:presentation")

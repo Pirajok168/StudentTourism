@@ -3,7 +3,6 @@ plugins {
 
     id("com.android.library")
     kotlin("plugin.serialization")
-    id("app.cash.sqldelight")
 }
 
 kotlin {
@@ -31,14 +30,13 @@ kotlin {
             dependencies {
 
                 val serialization_version = "1.5.0-RC"
-                api(project(":commons:core"))
+                //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
 
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-client-auth:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
@@ -46,8 +44,6 @@ kotlin {
 
                 implementation("androidx.datastore:datastore-preferences-core:1.1.0-dev01")
                 implementation("androidx.datastore:datastore-core-okio:1.1.0-dev01")
-
-                implementation ("com.soywiz.korlibs.klock:klock:3.4.0")
             }
         }
         val commonTest by getting {
@@ -91,10 +87,12 @@ kotlin {
 }
 
 android {
-    namespace = "ru.android.studenttourism"
+    namespace = "commons.core"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
         targetSdk = 33
     }
 }
+
+
