@@ -15,7 +15,8 @@ fun NavGraphBuilder.homeNavGraph(
     toViewAboutHouse: (id: String) -> Unit = {},
     toFiltersScreen: () -> Unit,
     toEventsScreen: () ->Unit,
-    toNewsScreen: () ->Unit
+    toNewsScreen: () ->Unit,
+    toViewAboutEvent:(idEvent:String, idUni: String) ->Unit
 ) {
     navigation(
         route = HomeRoutes.Root.passRoute(),
@@ -34,7 +35,8 @@ fun NavGraphBuilder.homeNavGraph(
                 toFiltersScreen = toFiltersScreen,
                 homeViewModel = viewModel(parentEntry),
                 toEventsScreen = toEventsScreen,
-                toNewsScreen = toNewsScreen
+                toNewsScreen = toNewsScreen,
+                toViewAboutEvent = toViewAboutEvent
             )
         }
     }

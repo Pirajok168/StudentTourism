@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":feature:events:presentation"))
     implementation(project(":feature:booking:presentation"))
     implementation(project(":feature:filters:presentation"))
+    implementation(project(":feature:quiz:presentation"))
     api(project(":feature:umbrellanavigation"))
     implementation(project(":feature:auth:presentation"))
     api(project(":sync:work"))

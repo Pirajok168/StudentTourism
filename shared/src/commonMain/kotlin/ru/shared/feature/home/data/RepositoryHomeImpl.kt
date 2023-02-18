@@ -17,6 +17,7 @@ import ru.shared.feature.home.data.model.RecommendedDormitories
 import ru.shared.feature.home.data.sql.IMostPopularDaoDormitories
 import ru.shared.feature.home.data.sql.toCache
 import ru.shared.feature.home.data.sql.toPreview
+import ru.shared.feature.userReccomendations.data.IRepoUserRecommendation
 
 class RepositoryHomeImpl(
     private val api: IApiSearch,
@@ -24,9 +25,14 @@ class RepositoryHomeImpl(
     private val daoDormitories: IDormitoriesDatabase,
     private val mostPopularDaoDormitories: IMostPopularDaoDormitories,
     private val eventDao: IEventsDatabase,
+    private val repoUserRecommendation: IRepoUserRecommendation
 ) : IRepositoryHome {
 
 
+    override suspend fun getUserRecommendations(): ResponseRequest<List<RecommendedDormitories>> {
+        val userRecommendation = repoUserRecommendation.getUserRecommendations() ?: return ResponseRequest.Error(ResponseError(message = "Не заданы рекомендации"))
+        return ResponseRequest.Success(daoDormitories.getAllDormitories().filter { it.idDormitories != null && userRecommendation.district.contains(it.districtUniversity)}.map { it.toPresent() })
+    }
 
     override suspend fun getMostPopular(): Flow<FlowResponse<List<MostPopular>>> =
 

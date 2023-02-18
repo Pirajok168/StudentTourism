@@ -12,4 +12,6 @@ interface IRepositoryHome {
     suspend fun getMostPopular(): Flow<FlowResponse<List<MostPopular>>>
     suspend fun loadEvents()
 
+    suspend fun getUserRecommendations():  ResponseRequest< List<RecommendedDormitories>>
+
 }

@@ -19,6 +19,7 @@ import ru.shared.ISearchDormitories
 import ru.shared.MobileSdk
 import ru.shared.core.model.wrapper.FlowResponse
 import ru.shared.core.model.wrapper.ResponseError
+import ru.shared.core.model.wrapper.ResponseRequest
 import ru.shared.feature.event.data.IRepoEvent
 import ru.shared.feature.event.data.model.PresentationEvent
 import ru.shared.feature.filters.data.IRepoFilters
@@ -33,6 +34,8 @@ data class HomeState(
     val loading: Boolean = false,
     val searchValue: String = "",
     val isSearch: Boolean = false,
+    val recommendedDormitories: List<RecommendedDormitories> = emptyList(),
+    val isErrorRecommended: ResponseError? = null
 )
 
 sealed class Event {
@@ -41,7 +44,7 @@ sealed class Event {
     object LoadAll: Event()
     object Search: Event()
     object CloseSearch: Event()
-
+    object LoadRecommended: Event()
     data class Searching(val value: String): Event()
 }
 
@@ -85,9 +88,21 @@ class HomeViewModel  constructor(
                 }
 
             }
+            Event.LoadRecommended -> viewModelScope.launch {
+                loadRecommendation()
+            }
         }
     }
-
+    private suspend fun loadRecommendation() = withContext(Dispatchers.IO){
+        homeState = when(val  recommendedDormitories = repositoryHome.getUserRecommendations()){
+            is ResponseRequest.Error -> withContext(Dispatchers.Main) {
+                homeState.copy(
+                    isErrorRecommended = recommendedDormitories.error
+                )
+            }
+            is ResponseRequest.Success ->   withContext(Dispatchers.Main) { homeState.copy(recommendedDormitories = recommendedDormitories.data)}
+        }
+    }
     private suspend fun loadEvent(){
         val event = repositoryEvent.getAllEvent()
 
@@ -117,7 +132,11 @@ class HomeViewModel  constructor(
                         }
 
                         is FlowResponse.Success -> {
-                            viewModelScope.launch(Dispatchers.IO) { filters.loadAllDataDormitories() }
+                            viewModelScope.launch(Dispatchers.IO) {
+                                filters.loadAllDataDormitories()
+
+                                loadRecommendation()
+                            }
                             homeState = homeState.copy(
                                 mostPopular = it.data
                             )

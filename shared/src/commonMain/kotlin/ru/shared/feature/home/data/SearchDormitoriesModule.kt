@@ -23,6 +23,6 @@ internal val homeDormitoriesModule = DI.Module("SearchDormitoriesModule") {
 
 
     bind<IRepositoryHome>() with singleton {
-        RepositoryHomeImpl(instance(), instance(), instance(), instance(), instance())
+        RepositoryHomeImpl(instance(), instance(), instance(), instance(), instance(),instance())
     }
 }

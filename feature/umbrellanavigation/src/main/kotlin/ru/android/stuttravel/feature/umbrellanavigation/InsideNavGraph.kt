@@ -22,6 +22,7 @@ fun NavGraphBuilder.InsideNavGraph(
     toViewAboutHouse: (id: String) -> Unit = {},
     toFiltersScreen: () -> Unit,
     toEventsScreen: () -> Unit,
+    toViewAboutEvent:(idEvent:String, idUni: String) ->Unit
 ) {
     navigation(
         route = InsideRoutes.Root.passRoute(),
@@ -62,7 +63,7 @@ fun NavGraphBuilder.InsideNavGraph(
                         toEventsScreen,
                         toNewsScreen = {
 
-                        })
+                        }, toViewAboutEvent=toViewAboutEvent)
                     profileNavGraph(inlineNavController, padding)
 
                     AllBooking(padding)

@@ -1,6 +1,7 @@
 package ru.android.stuttravel.feature.home.presentation
 
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -47,13 +48,18 @@ fun HomeScreen(
     toViewAboutHouse: (idDormitories: String) -> Unit = {},
     toFiltersScreen: () -> Unit,
     toEventsScreen: () ->Unit,
-    toNewsScreen: ()->Unit
+    toNewsScreen: ()->Unit,
+    toViewAboutEvent:(idEvent:String, idUni: String) ->Unit
 ) {
     val uiState = homeViewModel.homeState
     val list by homeViewModel.filteredList.collectAsState(initial = emptyList())
     LaunchedEffect(key1 = Unit, block = {
         if (uiState.mostPopular.isEmpty()) {
             homeViewModel.event(Event.LoadDisplayData)
+        }
+
+        if(uiState.isErrorRecommended == null && uiState.recommendedDormitories.isEmpty()){
+            homeViewModel.event(Event.LoadRecommended)
         }
 
         if (list.isEmpty()) {
@@ -245,7 +251,38 @@ fun HomeScreen(
             ) {
 
 
+                item {
+                    Text(
+                        text = "Специально для вас",
+                        modifier = Modifier
+                            .padding(top = 32.dp)
+                            .padding(horizontal = 16.dp),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontSize = 26.sp
+                    )
+                }
 
+                item{
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        contentPadding = PaddingValues(16.dp)
+                    ){
+                        items(uiState.recommendedDormitories){
+                            PopulationPlace(
+                                Modifier
+                                    .size(190.dp, 260.dp),
+                                title = it.name,
+                                city = it.city.orEmpty(),
+                                photoUrl = it.photo,
+                                racing = "",
+                                onClick = {
+                                    toViewAboutHouse(it.idDormitories)
+                                },
+
+                                )
+                        }
+                    }
+                }
 
                 item {
                     Text(
@@ -349,7 +386,10 @@ fun HomeScreen(
                                 .size(230.dp, 230.dp),
                                 image = it.photos,
                                 label = it.name,
-                                it.type
+                                it.type,
+                                toViewAboutEvent={
+                                    toViewAboutEvent(it.id, it.idUniversity)
+                                }
                             )
                         }
                     }

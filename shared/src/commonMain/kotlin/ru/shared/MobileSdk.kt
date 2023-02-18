@@ -89,6 +89,6 @@ val MobileSdk.IRepoBooking: IRepoBooking
 val MobileSdk.IRepoFilters: IRepoFilters
     get() = MobileSdk.di.instance()
 
-val MobileSdk.IRepoRecomendetion: IRepoUserRecommendation
+val MobileSdk.IRepoUserRecommendation: IRepoUserRecommendation
     get() = MobileSdk.di.instance()
 

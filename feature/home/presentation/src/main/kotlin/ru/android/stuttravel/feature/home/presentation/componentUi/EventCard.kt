@@ -27,15 +27,18 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 import ru.shared.feature.event.data.model.TypeEvent
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventCard(
     modifier: Modifier,
     image: String,
     label: String,
-    type: TypeEvent
+    type: TypeEvent,
+    toViewAboutEvent: ()->Unit
 ) {
     ElevatedCard(
-        modifier = modifier
+        modifier = modifier,
+        onClick = toViewAboutEvent
 
     ) {
         Box(modifier = Modifier.fillMaxSize()) {

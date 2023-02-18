@@ -12,6 +12,7 @@ import ru.android.stuttravel.feature.auth.presentation.navigation.AuthRoutes
 import ru.android.stuttravel.feature.auth.presentation.navigation.authNavGraph
 import ru.android.stuttravel.feature.booking.presentation.navigation.BookingNavigation
 import ru.android.stuttravel.feature.events.presentation.navigation.EventsNavGraph
+import ru.android.stuttravel.feature.quiz.presentation.navigation.QuizNavGraph
 import ru.android.stuttravel.feature.umbrellanavigation.InsideNavGraph
 import ru.android.stuttravel.feature.umbrellanavigation.InsideRoutes
 import ru.android.stuttravel.feature.viewinghousing.presentation.navigation.ViewingHousingNavGraph
@@ -30,6 +31,7 @@ fun StudNavHos(
         authNavGraph(hostNavController){
             when(it.userRole){
                 "user" ->{
+                    hostNavController.backQueue.clear()
                     WorkManager
                         .getInstance(context)
                         .enqueue(
@@ -37,8 +39,11 @@ fun StudNavHos(
                                 .setInitialDelay(5, TimeUnit.SECONDS)
                                 .build())
 
-                    hostNavController.backQueue.clear()
-                    hostNavController.navigate(InsideRoutes.Root.passRoute())
+                    if (firstLaunch){
+                        hostNavController.navigate("quiz")
+                    }else{
+                        hostNavController.navigate(InsideRoutes.Root.passRoute())
+                    }
                 }
             }
         }
@@ -47,12 +52,19 @@ fun StudNavHos(
 
         EventsNavGraph(hostNavController)
 
+        QuizNavGraph(hostNavController){
+            hostNavController.backQueue.clear()
+            hostNavController.navigate(InsideRoutes.Root.passRoute())
+        }
         InsideNavGraph(navHostController = hostNavController, toViewAboutHouse={
             hostNavController.navigate("viewingouseDetaiil?id=$it")
         }, toFiltersScreen = {
             hostNavController.navigate(FiltersRoutes.Root.passRoute())
         }, toEventsScreen = {
             hostNavController.navigate("events")
+        }, toViewAboutEvent={
+            idEvent, idUnit ->
+            hostNavController.navigate("aboutevent?idEvent=$idEvent&idUni=$idUnit")
         })
         ViewingHousingNavGraph(hostNavController = hostNavController)
 
