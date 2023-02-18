@@ -20,7 +20,11 @@ class RepoProfileImpl(
     override suspend fun getProfile(): Flow<FlowResponse<PresentationProfile>> = flow {
         emit(FlowResponse.Loading())
 
-        emit( FlowResponse.Success(daoProfile.getProfile("").toPresent()) )
+        val remote = daoProfile.getProfile("")?.toPresent()
+        if (remote!=null){
+            emit( FlowResponse.Success(remote) )
+        }
+
 
         when(val response = provideCatch {  api.getProfile() }){
             is ResponseRequest.Error -> {

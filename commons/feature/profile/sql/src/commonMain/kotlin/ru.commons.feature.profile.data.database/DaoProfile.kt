@@ -15,8 +15,8 @@ class DaoProfile(
 ): IDaoProfile {
 
     private val dbQuery = dataBase.profileTableQueries
-    override suspend fun getProfile(id: String): Profile {
-        return dbQuery.getUserProfile().executeAsOne()
+    override suspend fun getProfile(id: String): Profile? {
+        return dbQuery.getUserProfile().executeAsOneOrNull()
     }
 
     override suspend fun setProfile(profileEntity: ProfileEntity) {
