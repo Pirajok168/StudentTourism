@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentations.viewmodel
+package ru.android.stuttravel.feature.events.presentation.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

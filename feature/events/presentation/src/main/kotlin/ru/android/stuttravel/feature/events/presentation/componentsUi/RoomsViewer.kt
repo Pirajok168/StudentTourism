@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentations.componentsUi
+package ru.android.stuttravel.feature.events.presentation.componentsUi
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

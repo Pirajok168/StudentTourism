@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentations
+package ru.android.stuttravel.feature.events.presentation
 
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
@@ -19,10 +19,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
-import ru.android.stuttravel.feature.events.presentations.componentsUi.HeaderView
-import ru.android.stuttravel.feature.events.presentations.componentsUi.RoomsViewer
-import ru.android.stuttravel.feature.events.presentations.viewmodel.AboutEventViewModel
-import ru.android.stuttravel.feature.events.presentations.viewmodel.EventAbout
+import ru.android.stuttravel.feature.events.presentation.componentsUi.HeaderView
+import ru.android.stuttravel.feature.events.presentation.componentsUi.RoomsViewer
+import ru.android.stuttravel.feature.events.presentation.viewmodel.AboutEventViewModel
+import ru.android.stuttravel.feature.events.presentation.viewmodel.EventAbout
 
 
 sealed class Type(

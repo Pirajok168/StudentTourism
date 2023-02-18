@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentations
+package ru.android.stuttravel.feature.events.presentation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
@@ -35,8 +35,8 @@ import com.soywiz.klock.DateTime
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.format
 import com.soywiz.klock.locale.russian
-import ru.android.stuttravel.feature.events.presentations.viewmodel.Events
-import ru.android.stuttravel.feature.events.presentations.viewmodel.EventsViewModel
+import ru.android.stuttravel.feature.events.presentation.viewmodel.Events
+import ru.android.stuttravel.feature.events.presentation.viewmodel.EventsViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
