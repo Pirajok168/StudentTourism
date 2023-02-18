@@ -81,7 +81,8 @@ class HomeViewModel  constructor(
 
     private suspend fun loadEvent(){
         val event = repositoryEvent.getAllEvent()
-        homeState = homeState.copy(listEvent = event.subList(0, 5))
+
+        homeState = homeState.copy(listEvent = if(event.isNotEmpty()) event.subList(0, 5) else emptyList())
     }
 
 

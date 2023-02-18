@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,7 +21,7 @@ import ru.android.stuttravel.feature.auth.presentation.viewmodel.AuthViewModel
 import ru.android.stuttravel.feature.auth.presentation.viewmodel.Event
 import ru.shared.feature.auth.data.model.TypeUser
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun AuthorizeScreen(
     toResumeAsNoAuthorized: () -> Unit = {},
@@ -30,7 +32,7 @@ fun AuthorizeScreen(
     val uiState = authViewModel.authState
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
-
+    val keyboard = LocalSoftwareKeyboardController.current
     LaunchedEffect(uiState){
         Log.e("AuthorizeScreen", uiState.toString())
     }
@@ -93,6 +95,7 @@ fun AuthorizeScreen(
                 Spacer(modifier = Modifier.padding(18.dp))
                 ElevatedButton(
                     onClick = {
+                        keyboard?.hide()
                         authViewModel.event(Event.AuthByLoginPassword)
                     },
                     modifier = Modifier.fillMaxWidth(),
