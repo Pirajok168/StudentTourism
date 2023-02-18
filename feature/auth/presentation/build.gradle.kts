@@ -59,5 +59,5 @@ dependencies{
 
     implementation ("androidx.compose.foundation:foundation:1.3.1")
 
-
+    implementation ("androidx.compose.animation:animation-graphics:1.1.1")
 }
