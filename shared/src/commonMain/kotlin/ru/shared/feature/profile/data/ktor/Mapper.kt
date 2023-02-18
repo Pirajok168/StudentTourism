@@ -11,5 +11,12 @@ fun ProfileResponse.toPresent(): PresentationProfile = PresentationProfile(
     phone = phone.orEmpty(),
     studentRoleType = studentRoleType.orEmpty(),
     userRole = userRole.orEmpty(),
-    username = username.orEmpty()
+    username = username.orEmpty(),
+    universityName = universityName.orEmpty(),
+    middleName = middleName.orEmpty(),
+    gender = gender.orEmpty(),
+    departureCity = departureCity.orEmpty(),
+    birthday = birthday.orEmpty(),
+    WoS = WoS.orEmpty(),
+    firstName =firstName.orEmpty()
 )

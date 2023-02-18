@@ -6,7 +6,14 @@ CREATE TABLE Profile(
     name TEXT NOT NULL ,
     phone TEXT NOT NULL ,
     studentRoleType TEXT NOT NULL ,
-    lastName TEXT NOT NULL
+    lastName TEXT NOT NULL,
+    universityName TEXT NOT NULL,
+    middleName TEXT NOT NULL,
+     firstName TEXT NOT NULL,
+    gender TEXT NOT NULL,
+    departureCity TEXT NOT NULL,
+    birthday TEXT NOT NULL,
+    WoS TEXT NOT NULL
 );
 
 
@@ -16,5 +23,5 @@ getUserProfile:
 
 
 setProfile:
-    INSERT OR REPLACE INTO Profile(id, username, email, userRole, name, phone, studentRoleType, lastName)
-    VALUES (?,?,?,?,?,?,?,?);
+    INSERT OR REPLACE INTO Profile(id, username, email, userRole, name, phone, studentRoleType, lastName, universityName, middleName, gender, departureCity, birthday, WoS, firstName)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);

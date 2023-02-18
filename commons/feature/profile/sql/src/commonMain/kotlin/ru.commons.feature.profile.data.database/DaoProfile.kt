@@ -19,17 +19,11 @@ class DaoProfile(
         return dbQuery.getUserProfile().executeAsOneOrNull()
     }
 
-    override suspend fun setProfile(profileEntity: ProfileEntity) {
+    override suspend fun setProfile(profileEntity: Profile) {
         profileEntity.apply {
             dbQuery.setProfile(
-                id = id,
-                username = username,
-                email = email,
-                userRole = userRole,
-                name = name,
-                phone = phone,
-                studentRoleType = studentRoleType,
-                lastName = lastName
+                id, username, email, userRole, name, phone, studentRoleType, lastName, universityName, middleName, gender, departureCity, birthday, WoS,
+                firstName
             )
         }
     }

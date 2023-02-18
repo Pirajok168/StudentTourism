@@ -52,12 +52,18 @@ private fun Profile.toPresent(): PresentationProfile {
         studentRoleType = studentRoleType.orEmpty(),
         userRole = userRole.orEmpty(),
         username = username.orEmpty(),
+        WoS = WoS,
+        birthday = birthday,
+        departureCity = departureCity,
+        firstName = firstName,
+        gender = gender,
+        middleName = middleName,
+        universityName = universityName,
     )
 }
 
-private fun  ProfileResponse.toCache(): ProfileEntity {
-    return ProfileEntity(
-        createdTimestamp,
+private fun ProfileResponse.toCache(): Profile {
+    return Profile(
         email = email.orEmpty(),
         id = id.orEmpty(),
         lastName = lastName.orEmpty(),
@@ -66,9 +72,13 @@ private fun  ProfileResponse.toCache(): ProfileEntity {
         studentRoleType = studentRoleType.orEmpty(),
         userRole = userRole.orEmpty(),
         username = username.orEmpty(),
-        starredDormitories = starredDormitories,
-        timestamp = timestamp!!,
-        updatedTimestamp = updatedTimestamp!!
+        universityName = universityName.orEmpty(),
+        middleName = middleName.orEmpty(),
+        gender = gender.orEmpty(),
+        departureCity = departureCity.orEmpty(),
+        birthday = birthday.orEmpty(),
+        WoS = WoS.orEmpty(),
+        firstName =firstName.orEmpty()
     )
 }
 
