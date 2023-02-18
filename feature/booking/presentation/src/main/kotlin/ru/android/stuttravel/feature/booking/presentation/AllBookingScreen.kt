@@ -16,8 +16,19 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AllBookingScreen() {
-    Scaffold {
+fun AllBookingScreen(paddingValues: PaddingValues) {
+    Scaffold(
+        modifier = Modifier.padding(paddingValues),
+        contentWindowInsets = WindowInsets.statusBars.only(
+            WindowInsetsSides.Horizontal
+        ), topBar = {
+            TopAppBar(
+                title = {
+                    Text("Бронирования")
+                }
+            )
+        }
+    ) {
         LazyColumn(
             modifier = Modifier
                 .padding(it),
@@ -91,7 +102,7 @@ fun AllBookingScreen() {
 
                                     Text(
                                         text = "11.08.2022 - 20.08.2022",
-                                        style = MaterialTheme.typography.titleSmall,
+                                        style = MaterialTheme.typography.titleSmall.copy(),
 
                                         )
                                 }
@@ -177,10 +188,3 @@ fun AllBookingScreen() {
 }
 
 
-@Preview
-@Composable
-fun Preview() {
-    StudentTravelTheme {
-        AllBookingScreen()
-    }
-}

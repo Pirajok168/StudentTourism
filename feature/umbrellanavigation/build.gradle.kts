@@ -37,11 +37,12 @@ dependencies {
     api(project(":feature:news:presentation"))
     api(project(":core:navigation"))
     api(project(":feature:profile:presentation"))
+    api(project(":feature:booking:presentation"))
 
     val compose_version = "1.3.3"
     implementation("androidx.compose.material3:material3:1.1.0-alpha05")
     implementation("androidx.compose.ui:ui:$compose_version")
-
+    implementation ("androidx.compose.material:material-icons-extended:1.3.1")
     //compose nav
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
