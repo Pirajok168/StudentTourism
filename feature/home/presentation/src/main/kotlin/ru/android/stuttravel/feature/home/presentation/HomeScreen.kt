@@ -59,8 +59,7 @@ fun HomeScreen(
 
     LaunchedEffect(key1 = Unit, block = {
         if (uiState.mostPopular.isEmpty()) {
-            Log.e("testte", "Загрузка популряный")
-            homeViewModel.event(Event.DownloadMostPopular)
+            homeViewModel.event(Event.LoadDisplayData)
         }
 
 
@@ -248,16 +247,6 @@ fun HomeScreen(
                 contentPadding = it
             ) {
 
-                item {
-                    Text(
-                        text = "Специально для вас",
-                        modifier = Modifier
-                            .padding(top = 32.dp)
-                            .padding(horizontal = 16.dp),
-                        style = MaterialTheme.typography.labelLarge,
-                        fontSize = 26.sp
-                    )
-                }
 
 
 
@@ -358,8 +347,13 @@ fun HomeScreen(
                         contentPadding = PaddingValues(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        items(3) {
-
+                        items(uiState.listEvent) {
+                            EventCard(modifier = Modifier
+                                .size(230.dp, 230.dp),
+                                image = it.photos,
+                                label = it.name,
+                                it.type
+                            )
                         }
                     }
 //                Row(
