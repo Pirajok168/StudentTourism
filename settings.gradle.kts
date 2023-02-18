@@ -18,6 +18,7 @@ include(":androidApp")
 include(":shared")
 include(":commons:core")
 include(":commons:feature:search:sql")
+include(":commons:feature:profile:sql")
 
 
 include(":feature:auth:presentation")
