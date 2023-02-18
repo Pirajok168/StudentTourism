@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":core:theme"))
     implementation(project(":feature:viewinghousing:presentation"))
     implementation(project(":feature:events:presentation"))
+    implementation(project(":feature:booking:presentation"))
     api(project(":feature:umbrellanavigation"))
     implementation(project(":feature:auth:presentation"))
 

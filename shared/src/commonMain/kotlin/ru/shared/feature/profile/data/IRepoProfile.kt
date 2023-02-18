@@ -7,4 +7,6 @@ import ru.shared.feature.profile.data.model.PresentationProfile
 
 interface IRepoProfile {
     suspend fun getProfile(): Flow<FlowResponse<PresentationProfile>>
+
+    suspend fun getProfileIntoBaseData(): PresentationProfile?
 }

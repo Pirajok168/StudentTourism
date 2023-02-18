@@ -40,6 +40,10 @@ class RepoProfileImpl(
 
         emit(FlowResponse.Loading(false))
     }
+
+    override suspend fun getProfileIntoBaseData(): PresentationProfile? {
+        return daoProfile.getProfile("")?.toPresent()
+    }
 }
 
 private fun Profile.toPresent(): PresentationProfile {

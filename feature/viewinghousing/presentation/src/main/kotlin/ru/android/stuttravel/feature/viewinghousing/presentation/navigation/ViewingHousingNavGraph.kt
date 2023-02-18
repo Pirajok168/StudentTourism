@@ -29,7 +29,7 @@ fun NavGraphBuilder.ViewingHousingNavGraph(
                 idEvent, idUni ->
                 hostNavController.navigate("aboutevent?idEvent=$idEvent&idUni=$idUni")
             }, toBooking = {
-                hostNavController.navigate("bookingNavigation?idDormitories=$it}")
+                hostNavController.navigate("bookingNavigation?idDormitories=$it")
             })
         }
 

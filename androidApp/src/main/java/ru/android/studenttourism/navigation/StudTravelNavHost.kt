@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import ru.android.stuttravel.feature.auth.presentation.navigation.AuthRoutes
 import ru.android.stuttravel.feature.auth.presentation.navigation.authNavGraph
+import ru.android.stuttravel.feature.booking.presentation.navigation.BookingNavigation
 import ru.android.stuttravel.feature.umbrellanavigation.InsideNavGraph
 import ru.android.stuttravel.feature.umbrellanavigation.InsideRoutes
 import ru.android.stuttravel.feature.viewinghousing.presentation.navigation.ViewingHousingNavGraph
@@ -39,6 +40,6 @@ fun StudNavHos(
         })
         ViewingHousingNavGraph(hostNavController = hostNavController)
 
-
+        BookingNavigation(hostNavController)
     }
 }

@@ -8,6 +8,8 @@ import ru.shared.core.datastore.dataStoreModule
 import ru.shared.core.ktor.domainApi
 import ru.shared.feature.auth.data.IAuthRepository
 import ru.shared.feature.auth.data.authModule
+import ru.shared.feature.booking.data.IRepoBooking
+import ru.shared.feature.booking.data.bookingModule
 import ru.shared.feature.dormitories.data.dormitoriesModule
 import ru.shared.feature.event.data.IRepoEvent
 import ru.shared.feature.event.data.searchEventsModule
@@ -49,6 +51,7 @@ object MobileSdk {
                 searchLabsModule,
                 homeDormitoriesModule,
                 infoModule,
+                bookingModule,
             )
         }.direct
 
@@ -72,6 +75,10 @@ val MobileSdk.IEventRepo: IRepoEvent
     get() = MobileSdk.di.instance()
 
 val MobileSdk.IAuthSettingsRepository: IAuthSettingsRepository
+    get() = MobileSdk.di.instance()
+
+
+val MobileSdk.IRepoBooking: IRepoBooking
     get() = MobileSdk.di.instance()
 
 

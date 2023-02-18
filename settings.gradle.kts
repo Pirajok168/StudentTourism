@@ -28,6 +28,7 @@ include(":feature:umbrellanavigation")
 include(":feature:events:presentation")
 include(":feature:news:presentation")
 include(":feature:profile:presentation")
+include(":feature:booking:presentation")
 
 include(":core:navigation")
 include(":core:theme")
