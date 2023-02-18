@@ -14,6 +14,12 @@ kotlin {
             }
         }
     }
+
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            linkerOpts.add("-lsqlite3")
+        }
+    }
     
     listOf(
         iosX64(),
@@ -31,15 +37,13 @@ kotlin {
             dependencies {
 
                 val serialization_version = "1.5.0-RC"
-                api(project(":commons:core"))
-                api(project(":commons:feature:search:sql"))
-
+                //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version")
+                implementation(project(":commons:core"))
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("io.ktor:ktor-client-auth:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
@@ -47,8 +51,6 @@ kotlin {
 
                 implementation("androidx.datastore:datastore-preferences-core:1.1.0-dev01")
                 implementation("androidx.datastore:datastore-core-okio:1.1.0-dev01")
-
-                implementation ("com.soywiz.korlibs.klock:klock:3.4.0")
             }
         }
         val commonTest by getting {
@@ -90,12 +92,20 @@ kotlin {
         }
     }
 }
-
+sqldelight {
+    databases {
+        create("DormitoriesTable") {
+            packageName.set("ru.commons.feature.search.data.database")
+        }
+    }
+}
 android {
-    namespace = "ru.android.studenttourism"
+    namespace = "commons.feature.search.sql"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
         targetSdk = 33
     }
 }
+
+

@@ -1,0 +1,120 @@
+import kotlin.collections.List;
+import kotlin.String;
+import ru.commons.feature.search.data.database.entity.ServicesEntity;
+
+CREATE TABLE DetailsUniversityTable(
+    idUniversity TEXT PRIMARY KEY,
+    adminContactsUniversity TEXT,
+    cityUniversity TEXT NOT NULL,
+    committeeUniversity TEXT NOT NULL,
+    districtUniversity TEXT NOT NULL,
+    founderNameUniversity TEXT NOT NULL,
+    nameUniversity TEXT NOT NULL,
+    photoUniversity TEXT NOT NULL,
+    regionUniversity TEXT NOT NULL,
+    shortNameUniversity TEXT NOT NULL,
+    siteUniversity TEXT NOT NULL
+);
+
+
+CREATE TABLE DormitorieTable(
+    idDormitories TEXT PRIMARY KEY,
+    idUniversity TEXT  NOT NULL,
+    services TEXT AS List<ServicesEntity> NOT NULL,
+    FOREIGN KEY (idUniversity) REFERENCES DetailsUniversityTable(idUniversity) ON DELETE CASCADE
+);
+
+
+CREATE TABLE DetailsTable(
+    idDormitories TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    city TEXT NOT NULL,
+    street TEXT NOT NULL,
+    houseNumber TEXT NOT NULL,
+    mealPlan TEXT NOT NULL,
+    minDays TEXT NOT NULL,
+    maxDays TEXT NOT NULL,
+    photos TEXT AS List<String> NOT NULL,
+    requiredUniversityDocuments TEXT NOT NULL,
+    requiredStudentsDocuments TEXT NOT NULL,
+    lat REAL  NOT NULL ,
+    lng REAL,
+    phone TEXT NOT NULL,
+    email TEXT NOT NULL,
+    nameCommittee TEXT NOT NULL,
+    FOREIGN KEY (idDormitories) REFERENCES DormitorieTable(idDormitories) ON DELETE CASCADE
+);
+
+CREATE TABLE RoomsTable(
+    idRooms TEXT PRIMARY KEY,
+    idDormitories TEXT NOT NULL,
+    amountRooms TEXT NOT NULL,
+    descriptionRooms TEXT NOT NULL,
+    isFreeRooms INTEGER NOT NULL,
+    photosRooms TEXT AS List<String> NOT NULL,
+    priceRooms TEXT NOT NULL,
+    typeRooms TEXT NOT NULL,
+    FOREIGN KEY (idDormitories) REFERENCES DormitorieTable(idDormitories) ON DELETE CASCADE
+);
+
+
+CREATE TABLE ReviewDormitoriesTable(
+    idReview TEXT PRIMARY KEY,
+
+    createdTimestamp INTEGER NOT NULL,
+    idDormitories TEXT NOT NULL,
+
+    photos TEXT NOT NULL,
+    rating REAL NOT NULL,
+    text TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    topic TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    FOREIGN KEY (idDormitories) REFERENCES DormitorieTable(idDormitories) ON DELETE CASCADE
+);
+
+setUniversity:
+    INSERT OR REPLACE  INTO DetailsUniversityTable(idUniversity, adminContactsUniversity, cityUniversity, committeeUniversity, districtUniversity
+    ,founderNameUniversity, nameUniversity, photoUniversity, regionUniversity, shortNameUniversity, siteUniversity)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?);
+
+setAllDormitories:
+    INSERT OR REPLACE  INTO DormitorieTable(idDormitories, idUniversity,services)
+        VALUES (?,?,?);
+
+setAllDetailsDormitorie:
+    INSERT OR REPLACE  INTO DetailsTable(idDormitories, name, city, street,
+    houseNumber, mealPlan, minDays, maxDays, photos, requiredUniversityDocuments,
+    requiredStudentsDocuments, lat, lng,phone, email, nameCommittee)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+
+setAllRooms:
+    INSERT OR REPLACE INTO RoomsTable(idRooms, idDormitories, amountRooms, descriptionRooms, isFreeRooms, photosRooms, priceRooms, typeRooms)
+        VALUES (?,?,?,?,?,?,?,?);
+
+setReview:
+    INSERT OR REPLACE INTO ReviewDormitoriesTable(idReview, createdTimestamp, idDormitories, photos, rating, text, timestamp, topic, userId)
+        VALUES (?,?,?,?,?,?,?,?,?);
+
+getMostPopular:
+SELECT review.rating, det.photos, det.name, det.city, review.idDormitories FROM ReviewDormitoriesTable review
+LEFT JOIN DetailsTable det ON det.idDormitories = review.idDormitories;
+
+getRegionUniversity:
+SELECT DetailsUniversityTable.regionUniversity FROM DetailsUniversityTable
+ORDER BY DetailsUniversityTable.regionUniversity;
+
+getShortNameUniversity:
+SELECT DetailsUniversityTable.shortNameUniversity FROM DetailsUniversityTable
+ORDER BY DetailsUniversityTable.shortNameUniversity;
+
+getAllFilters:
+    SELECT d.regionUniversity,d.cityUniversity, d.shortNameUniversity, detail.mealPlan, rooms.typeRooms, detail.city, detail.minDays, detail.maxDays, detail.name , d.nameUniversity, detail.photos, detail.idDormitories FROM DetailsUniversityTable d
+            LEFT JOIN DormitorieTable dom ON dom.idUniversity = d.idUniversity
+            LEFT JOIN DetailsTable detail ON detail.idDormitories = dom.idDormitories
+            INNER JOIN RoomsTable rooms ON rooms.idDormitories = dom.idDormitories;
+
+getAllDormitories:
+    SELECT d.districtUniversity, d.nameUniversity, detail.idDormitories, detail.name, detail.city, detail.photos FROM DetailsUniversityTable d
+    LEFT JOIN DormitorieTable dom ON dom.idUniversity = d.idUniversity
+    LEFT JOIN DetailsTable detail ON detail.idDormitories = dom.idDormitories;

@@ -1,0 +1,28 @@
+import kotlin.collections.List;
+import kotlin.String;
+
+CREATE TABLE Lab(
+    id TEXT PRIMARY KEY,
+    universityId TEXT,
+    address TEXT NOT NULL,
+    city TEXT NOT NULL,
+    contactsName TEXT NOT NULL,
+    description TEXT NOT NULL,
+    email TEXT NOT NULL,
+    establishmentYear TEXT NOT NULL,
+    link TEXT NOT NULL,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    photos TEXT AS List<String> NOT NULL
+);
+
+getAllLab:
+    SELECT event.* FROM Lab event
+    LEFT JOIN DetailsUniversityTable uni ON event.universityId = uni.idUniversity
+    LEFT JOIN DormitorieTable dorm ON dorm.idUniversity = uni.idUniversity
+    WHERE dorm.idUniversity = (:idUniversity);
+
+
+setLab:
+    INSERT OR REPLACE INTO Lab(id,universityId, address, city, contactsName, description, email, establishmentYear, link, name, phone, photos)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?);

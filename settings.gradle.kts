@@ -17,6 +17,7 @@ rootProject.name = "StudentTourism"
 include(":androidApp")
 include(":shared")
 include(":commons:core")
+include(":commons:feature:search:sql")
 
 
 include(":feature:auth:presentation")

@@ -1,0 +1,42 @@
+import kotlin.collections.List;
+import kotlin.String;
+
+CREATE TABLE Event(
+    id TEXT PRIMARY KEY  NOT NULL,
+    idUniversity TEXT  NOT NULL,
+    name TEXT NOT NULL,
+    link TEXT NOT NULL,
+    price TEXT NOT NULL,
+    description TEXT NOT NULL,
+    video TEXT AS List<String> NOT NULL,
+    photos TEXT AS List<String> NOT NULL,
+    type TEXT NOT NULL,
+    wos TEXT NOT NULL,
+    fromDate INTEGER NOT NULL,
+    toDate INTEGER NOT NULL
+);
+
+
+getAllEvent:
+    SELECT event.* FROM Event event
+    LEFT JOIN DetailsUniversityTable uni ON event.idUniversity = uni.idUniversity
+    LEFT JOIN DormitorieTable dorm ON dorm.idUniversity = uni.idUniversity
+    WHERE  dorm.idDormitories = (:idDormitories);
+
+getEvents:
+  SELECT * FROM Event;
+
+setEvent:
+    INSERT OR REPLACE INTO Event(id, idUniversity, name, link, price, description, video, photos, type, wos, fromDate, toDate)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+
+
+getEventAndUniById:
+    SELECT event.*, uni.shortNameUniversity, uni.cityUniversity FROM Event event
+    LEFT JOIN DetailsUniversityTable uni ON uni.idUniversity = event.idUniversity
+    WHERE event.idUniversity = (:idUniversity) AND event.id = (:idEvent);
+
+getDormitoriesByIdUni:
+    SELECT room.* FROM DormitorieTable d
+    LEFT JOIN DetailsTable room ON room.idDormitories = d.idDormitories
+    WHERE idUniversity = (:idUniversity);

@@ -1,0 +1,25 @@
+-- must in onther module
+
+getDormitorieById:
+SELECT uni.regionUniversity, uni.nameUniversity,
+detail.*, dormi.services
+ FROM DetailsUniversityTable uni
+ LEFT JOIN DormitorieTable dormi ON dormi.idUniversity = uni.idUniversity
+ LEFT JOIN DetailsTable detail ON detail.idDormitories = dormi.idDormitories
+ WHERE dormi.idDormitories = (:idDormitories);
+
+
+
+getRoomsById:
+SELECT * FROM RoomsTable
+    WHERE idDormitories = (:idDormitories);
+
+
+getReviewsById:
+    SELECT * FROM ReviewDormitoriesTable
+      WHERE idDormitories = (:idDormitories);
+
+
+getRoomsByHerId:
+   SELECT * FROM RoomsTable
+       WHERE idRooms = (:idRooms);
