@@ -67,8 +67,8 @@ fun ViewingHouses(
                     FilledTonalIconButton(onClick = {
                         val intent = Intent().apply {
                             action = Intent.ACTION_SEND
-                            putExtra(Intent.EXTRA_TEXT, "Привет")
-                            putExtra(Intent.EXTRA_SUBJECT, "Привет2")
+                            putExtra(Intent.EXTRA_TEXT, "В путешествиях самое сложное это найти место для ночлега," +
+                                    " к счастью есть https://студтуризм.рф/dormitory/$idDormitoies , ну а мне остаётся только наслаждаться отдыхом")
                             type = "*/*"
                         }
                         try {
