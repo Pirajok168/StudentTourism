@@ -16,7 +16,7 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColumnScope.CityItemList() {
+fun ColumnScope.CityItemList(city: String) {
     Text(
         text = "Город отправления",
         style = MaterialTheme.typography.titleMedium.copy(
@@ -35,7 +35,7 @@ fun ColumnScope.CityItemList() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Улан-Удэ",
+            text = city,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
         )
@@ -50,24 +50,3 @@ fun ColumnScope.CityItemList() {
     }
 }
 
-@Preview
-@Composable
-private fun Preview () {
-    StudentTravelTheme() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            contentAlignment = Alignment.Center
-        ) {
-            AdditionalInformationCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(16.dp)
-
-            )
-        }
-
-    }
-}

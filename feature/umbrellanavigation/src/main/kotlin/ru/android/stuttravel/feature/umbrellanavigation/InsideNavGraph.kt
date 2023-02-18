@@ -2,6 +2,7 @@ package ru.android.stuttravel.feature.umbrellanavigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -9,6 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import ru.android.stuttravel.feature.home.presentation.navigation.HomeRoutes
 import ru.android.stuttravel.feature.home.presentation.navigation.homeNavGraph
+import ru.android.stuttravel.feature.profile.presentation.navigation.ProfileRoutes
+import ru.android.stuttravel.feature.profile.presentation.navigation.profileNavGraph
 
 
 fun NavGraphBuilder.InsideNavGraph(
@@ -34,13 +37,19 @@ fun NavGraphBuilder.InsideNavGraph(
                         route = HomeRoutes.Root
                     ),
 
+                    NavItem(
+                        icon = Icons.Outlined.Person,
+                        label = "Профиль",
+                        route = ProfileRoutes.Root
+                    )
+
                 ),
                 contentNavGraph = {  padding, inlineNavController ->
 
                     homeNavGraph(inlineNavController, padding, toViewAboutHouse, toFiltersScreen, toEventsScreen, toNewsScreen = {
 
                     })
-
+                    profileNavGraph(inlineNavController, padding,)
 
                 },
                 startDestination = HomeRoutes.Root

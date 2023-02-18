@@ -23,7 +23,9 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColumnScope.RoleItemList() {
+fun ColumnScope.RoleItemList(
+    role: String,
+) {
     val options = listOf("Студент", "Молодой специалист")
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options[0]) }
@@ -50,7 +52,7 @@ fun ColumnScope.RoleItemList() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Студент",
+                    text = role,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier
                 )
@@ -139,24 +141,3 @@ fun ColumnScope.RoleItemList() {
 }
 
 
-@Preview
-@Composable
-private fun Preview () {
-    StudentTravelTheme() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            contentAlignment = Alignment.Center
-        ) {
-            AdditionalInformationCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(16.dp)
-
-            )
-        }
-
-    }
-}

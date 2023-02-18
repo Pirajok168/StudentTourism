@@ -23,7 +23,7 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColumnScope.UniversityItemList() {
+fun ColumnScope.UniversityItemList(univ: String) {
     var isEditUniverstity by remember {
         mutableStateOf(false)
     }
@@ -53,7 +53,7 @@ fun ColumnScope.UniversityItemList() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "ВСГУТУ",
+                    text = univ,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier
                 )
@@ -131,24 +131,3 @@ fun ColumnScope.UniversityItemList() {
 }
 
 
-@Preview
-@Composable
-private fun Preview () {
-    StudentTravelTheme() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            contentAlignment = Alignment.Center
-        ) {
-            AdditionalInformationCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(16.dp)
-
-            )
-        }
-
-    }
-}

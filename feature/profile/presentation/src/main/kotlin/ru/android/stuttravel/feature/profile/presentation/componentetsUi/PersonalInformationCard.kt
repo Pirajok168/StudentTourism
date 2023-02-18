@@ -12,7 +12,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PersonalInformationCard() {
+fun PersonalInformationCard(
+    fio: String,
+    phone: String,
+    email: String,
+    birthday: String,
+) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,27 +33,36 @@ fun PersonalInformationCard() {
                     ),
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
-                Row(
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        .padding(horizontal = 16.dp)
                 ) {
-                    Text(
-                        text = "Еремин Данила Александрович",
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier
-                    )
-
-                    FilledTonalIconButton(onClick = { }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Edit,
-                            contentDescription = "df"
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .width(40.dp)
+                       , contentAlignment = Alignment.CenterStart){
+                        Text(
+                            text = fio,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier
+                                .width(170.dp),
+                            maxLines = 2
                         )
                     }
 
+                    Box(modifier = Modifier
+                        .fillMaxWidth(), contentAlignment = Alignment.CenterEnd){
+                        FilledTonalIconButton(onClick = { }, modifier = Modifier) {
+                            Icon(
+                                imageVector = Icons.Outlined.Edit,
+                                contentDescription = "df"
+                            )
+                        }
+                    }
                 }
+
+
 
 
 
@@ -76,7 +90,7 @@ fun PersonalInformationCard() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "89834219762",
+                        text = phone,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier
                     )
@@ -114,7 +128,7 @@ fun PersonalInformationCard() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "danilka.eremin@gmail.com",
+                        text = email,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier
                     )
@@ -152,7 +166,7 @@ fun PersonalInformationCard() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "29.06.2002",
+                        text = birthday,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier
                     )

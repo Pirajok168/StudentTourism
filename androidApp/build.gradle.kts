@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":feature:filters:presentation"))
     api(project(":feature:umbrellanavigation"))
     implementation(project(":feature:auth:presentation"))
+    api(project(":sync:work"))
 
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")

@@ -36,7 +36,7 @@ dependencies {
     api(project(":feature:home:presentation"))
     api(project(":feature:news:presentation"))
     api(project(":core:navigation"))
-
+    api(project(":feature:profile:presentation"))
 
     val compose_version = "1.3.3"
     implementation("androidx.compose.material3:material3:1.1.0-alpha05")

@@ -13,13 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 import ru.android.stuttravel.core.theme.StudentTravelTheme
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ColumnScope.SpecializationItemList() {
+fun ColumnScope.SpecializationItemList(specialization: String) {
 
 
 
@@ -43,7 +42,7 @@ fun ColumnScope.SpecializationItemList() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Программная инженерия",
+            text = specialization,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
         )
@@ -64,24 +63,3 @@ fun ColumnScope.SpecializationItemList() {
 }
 
 
-@Preview
-@Composable
-private fun Preview () {
-    StudentTravelTheme() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            contentAlignment = Alignment.Center
-        ) {
-            AdditionalInformationCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize()
-                    .padding(16.dp)
-
-            )
-        }
-
-    }
-}

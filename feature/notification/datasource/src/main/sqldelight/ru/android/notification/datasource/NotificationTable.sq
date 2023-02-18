@@ -1,0 +1,16 @@
+CREATE TABLE NotificationEntity(
+    id TEXT PRIMARY KEY NOT NULL ,
+    name TEXT NOT NULL ,
+    type TEXT NOT NULL ,
+    createdTimestamp INTEGER NOT NULL ,
+    userId TEXT NOT NULL,
+    text TEXT NOT NULL
+);
+
+
+setNotifications:
+    INSERT OR REPLACE INTO NotificationEntity(id,name,type,createdTimestamp,userId, text)
+    VALUES (?,?,?,?,?,?);
+
+getNotificaions:
+    SELECT * FROM NotificationEntity;

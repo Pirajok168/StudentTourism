@@ -28,7 +28,7 @@ import ru.android.stuttravel.core.theme.StudentTravelTheme
 import ru.shared.MobileSdk
 
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     companion object{
         const val Key = "firstRun"
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = LocalContext.current
 
-
+            val viewModel: ApplicationViewModel = viewModel()
             StudentTravelTheme {
 
              val hostNavController = rememberNavController()

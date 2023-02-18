@@ -35,6 +35,7 @@ dependencies{
     implementation(project(":core:navigation"))
     implementation(project(":core:theme"))
     implementation(project(mapOf("path" to ":shared")))
+    //  implementation(project(":umbrelladi"))
     val compose_version = "1.3.3"
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
@@ -44,7 +45,7 @@ dependencies{
     implementation ("androidx.compose.material3:material3:1.1.0-alpha05")
     implementation ("androidx.compose.material:material-icons-extended:1.3.1")
     implementation("io.coil-kt:coil-compose:2.2.2")
-
+    implementation ("com.soywiz.korlibs.klock:klock-android:3.4.0")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
