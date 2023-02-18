@@ -54,7 +54,7 @@ class HomeViewModel  constructor(
 
             }
             Event.CloseSearch -> {
-
+                homeState = homeState.copy(isSearch = false)
             }
             Event.LoadAll -> {
 

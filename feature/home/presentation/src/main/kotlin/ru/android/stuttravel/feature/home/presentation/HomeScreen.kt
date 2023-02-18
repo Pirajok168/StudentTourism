@@ -359,12 +359,7 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(3) {
-                            EventCard(
-                                modifier = Modifier
-                                    .size(230.dp, 230.dp),
-                                label = "Посещение Центра боевой славы и Мелекесского гарнизона",
-                                image = painterResource(id = 0)
-                            )
+
                         }
                     }
 //                Row(

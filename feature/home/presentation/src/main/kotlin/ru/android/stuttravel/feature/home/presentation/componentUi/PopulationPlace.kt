@@ -55,9 +55,6 @@ fun PopulationPlace(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(photoUrl)
                         .crossfade(true)
-                        .listener { request, result ->
-                            Log.e("requestphoto", "request = $request. \n result = $result \n photoUrl = $photoUrl \n _____________________________")
-                        }
                         .build(),
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
@@ -139,7 +136,7 @@ fun PopulationPlace(
                                 style = MaterialTheme
                                     .typography
                                     .bodySmall,
-                                fontWeight = FontWeight.Thin,
+                                fontWeight = FontWeight.Light,
                                 modifier = Modifier
 
                             )

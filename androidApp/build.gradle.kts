@@ -7,10 +7,10 @@ plugins {
 }
 
 android {
-    namespace = "ru.android.studenttourism.android"
+    namespace = "ru.android.stuttravel"
     compileSdk = 33
     defaultConfig {
-        applicationId = "ru.android.studenttourism.android"
+        applicationId = "ru.android.stuttravel"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

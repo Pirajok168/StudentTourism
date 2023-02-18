@@ -23,7 +23,7 @@ import ru.shared.feature.profile.data.model.PresentationProfile
 data class ProfileState(
     val profile: PresentationProfile? = null,
     val isLoading: Boolean = false,
-    val isError: ResponseError? = null
+    val isError: ResponseError? = null,
 )
 
 

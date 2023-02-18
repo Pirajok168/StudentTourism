@@ -1,3 +1,13 @@
-<resources>
-    <style name="AppTheme" parent="android:Theme.Material.NoActionBar"/>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.StutTravel" parent="Theme.MaterialComponents.Light.NoActionBar" >
+
+
+
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+    </style>
 </resources>
