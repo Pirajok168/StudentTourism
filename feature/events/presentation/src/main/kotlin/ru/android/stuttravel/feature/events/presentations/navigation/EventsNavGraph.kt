@@ -1,12 +1,12 @@
-package ru.android.stuttravel.feature.events.presentation.navigation
+package ru.android.stuttravel.feature.events.presentations.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import ru.android.stuttravel.feature.events.presentation.AboutEvent
-import ru.android.stuttravel.feature.events.presentation.EventsScreen
+import ru.android.stuttravel.feature.events.presentations.AboutEvent
+import ru.android.stuttravel.feature.events.presentations.EventsScreen
 
 fun NavGraphBuilder.EventsNavGraph(
     hostNavController: NavHostController,

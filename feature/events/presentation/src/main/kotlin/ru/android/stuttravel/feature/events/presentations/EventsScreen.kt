@@ -1,6 +1,5 @@
-package ru.android.stuttravel.feature.events.presentation
+package ru.android.stuttravel.feature.events.presentations
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,14 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -38,9 +35,8 @@ import com.soywiz.klock.DateTime
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.format
 import com.soywiz.klock.locale.russian
-import ru.android.stuttravel.core.theme.StudentTravelTheme
-import ru.android.stuttravel.feature.events.presentation.viewmodel.Events
-import ru.android.stuttravel.feature.events.presentation.viewmodel.EventsViewModel
+import ru.android.stuttravel.feature.events.presentations.viewmodel.Events
+import ru.android.stuttravel.feature.events.presentations.viewmodel.EventsViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)

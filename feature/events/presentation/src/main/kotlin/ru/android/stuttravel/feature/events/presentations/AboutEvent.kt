@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentation
+package ru.android.stuttravel.feature.events.presentations
 
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
@@ -10,29 +10,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Room
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.HorizontalPagerIndicator
-import com.google.accompanist.pager.rememberPagerState
-import ru.android.stuttravel.feature.events.presentation.componentsUi.HeaderView
-import ru.android.stuttravel.feature.events.presentation.componentsUi.RoomsViewer
-import ru.android.stuttravel.feature.events.presentation.viewmodel.AboutEventViewModel
-import ru.android.stuttravel.feature.events.presentation.viewmodel.EventAbout
-import ru.shared.core.model.DetailRoom
+import ru.android.stuttravel.feature.events.presentations.componentsUi.HeaderView
+import ru.android.stuttravel.feature.events.presentations.componentsUi.RoomsViewer
+import ru.android.stuttravel.feature.events.presentations.viewmodel.AboutEventViewModel
+import ru.android.stuttravel.feature.events.presentations.viewmodel.EventAbout
 
 
 sealed class Type(

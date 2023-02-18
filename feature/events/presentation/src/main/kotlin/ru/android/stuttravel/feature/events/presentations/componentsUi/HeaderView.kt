@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentation.componentsUi
+package ru.android.stuttravel.feature.events.presentations.componentsUi
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -16,7 +16,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
-import ru.android.stuttravel.feature.events.presentation.toFormatString
+import ru.android.stuttravel.feature.events.presentations.toFormatString
 import ru.shared.feature.event.data.model.DetailEvent
 
 

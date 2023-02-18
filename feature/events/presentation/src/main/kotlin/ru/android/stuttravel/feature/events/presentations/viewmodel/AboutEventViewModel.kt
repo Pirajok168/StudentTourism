@@ -1,4 +1,4 @@
-package ru.android.stuttravel.feature.events.presentation.viewmodel
+package ru.android.stuttravel.feature.events.presentations.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,7 +11,6 @@ import ru.shared.MobileSdk
 import ru.shared.feature.event.data.IRepoEvent
 import ru.shared.feature.event.data.model.DetailEvent
 import ru.shared.feature.seeInfoDormitories.data.model.PresentationDetailDormitories
-import ru.shared.feature.seeInfoDormitories.data.model.PresentationRoomsDetail
 
 data class AboutState(
     val events: DetailEvent? = null,
