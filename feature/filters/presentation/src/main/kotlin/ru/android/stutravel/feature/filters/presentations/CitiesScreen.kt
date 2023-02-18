@@ -1,4 +1,4 @@
-package ru.android.stutravel.feature.filters.presentation
+package ru.android.stutravel.feature.filters.presentations
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ru.android.stutravel.feature.filters.presentation.viewmodel.Event
-import ru.android.stutravel.feature.filters.presentation.viewmodel.FilterSearchViewModel
+import ru.android.stutravel.feature.filters.presentations.viewmodel.Event
+import ru.android.stutravel.feature.filters.presentations.viewmodel.FilterSearchViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable

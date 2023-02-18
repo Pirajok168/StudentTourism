@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ru.android.studenttourism.feature.home.presentation.R
-import ru.android.stutravel.feature.filters.presentation.SortedScreen
+import ru.android.stutravel.feature.filters.presentations.SortedScreen
 import ru.android.stuttravel.feature.home.presentation.componentUi.EventCard
 import ru.android.stuttravel.feature.home.presentation.componentUi.PopulationPlace
 import ru.android.stuttravel.feature.home.presentation.componentUi.WhatIsLookCard
