@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import ru.android.stutravel.feature.filters.presentation.navigation.FiltersRoutes
+import ru.android.stutravel.feature.filters.presentation.navigation.filtersNavGraph
 import ru.android.stuttravel.feature.auth.presentation.navigation.AuthRoutes
 import ru.android.stuttravel.feature.auth.presentation.navigation.authNavGraph
 import ru.android.stuttravel.feature.booking.presentation.navigation.BookingNavigation
@@ -29,12 +31,13 @@ fun StudNavHos(
             }
         }
 
+        filtersNavGraph(hostNavController)
 
 
         InsideNavGraph(navHostController = hostNavController, toViewAboutHouse={
             hostNavController.navigate("viewingouseDetaiil?id=$it")
         }, toFiltersScreen = {
-
+            hostNavController.navigate(FiltersRoutes.Root.passRoute())
         }, toEventsScreen = {
 
         })

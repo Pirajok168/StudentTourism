@@ -34,6 +34,7 @@ android {
 dependencies{
     implementation(project(":core:navigation"))
     implementation(project(":core:theme"))
+    implementation(project(":feature:filters:presentation"))
     implementation(project(mapOf("path" to ":shared")))
     val compose_version = "1.3.3"
     implementation ("androidx.core:core-ktx:1.9.0")

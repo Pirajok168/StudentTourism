@@ -4,7 +4,7 @@ plugins{
 }
 
 android {
-    namespace = "ru.android.stuttravel.feature.events.presentation"
+    namespace = "ru.android.stuttravel.feature.filters.presentation"
     compileSdk = 33
 
     defaultConfig {
@@ -35,6 +35,7 @@ dependencies{
     implementation(project(":core:navigation"))
     implementation(project(":core:theme"))
     implementation(project(mapOf("path" to ":shared")))
+    //  implementation(project(":umbrelladi"))
     val compose_version = "1.3.3"
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
@@ -55,5 +56,5 @@ dependencies{
     //compose nav
     implementation ("androidx.navigation:navigation-compose:2.5.3")
 
-    implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+
 }
