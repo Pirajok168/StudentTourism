@@ -4,7 +4,7 @@ plugins{
 }
 
 android {
-    namespace = "ru.android.studenttourism.feature.filters.presentation"
+    namespace = "ru.android.stuttravel.feature.events.presentation"
     compileSdk = 33
 
     defaultConfig {
