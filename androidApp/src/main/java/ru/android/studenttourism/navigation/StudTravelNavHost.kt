@@ -8,6 +8,7 @@ import ru.android.stuttravel.feature.auth.presentation.navigation.AuthRoutes
 import ru.android.stuttravel.feature.auth.presentation.navigation.authNavGraph
 import ru.android.stuttravel.feature.umbrellanavigation.InsideNavGraph
 import ru.android.stuttravel.feature.umbrellanavigation.InsideRoutes
+import ru.android.stuttravel.feature.viewinghousing.presentation.navigation.ViewingHousingNavGraph
 
 
 @Composable
@@ -30,13 +31,13 @@ fun StudNavHos(
 
 
         InsideNavGraph(navHostController = hostNavController, toViewAboutHouse={
-
+            hostNavController.navigate("viewingouseDetaiil?id=$it")
         }, toFiltersScreen = {
 
         }, toEventsScreen = {
 
         })
-
+        ViewingHousingNavGraph(hostNavController = hostNavController)
 
 
     }
