@@ -22,6 +22,8 @@ import ru.shared.feature.profile.data.IRepoProfile
 import ru.shared.feature.profile.data.profileModule
 import ru.shared.feature.seeInfoDormitories.data.IRepoGetInfo
 import ru.shared.feature.seeInfoDormitories.data.infoModule
+import ru.shared.feature.userReccomendations.data.IRepoUserRecommendation
+import ru.shared.feature.userReccomendations.data.userRecommendationsModule
 import kotlin.native.concurrent.ThreadLocal
 
 @ThreadLocal
@@ -46,6 +48,7 @@ object MobileSdk {
                 dormitoriesModule,
                 moduleFilters,
                 profileModule,
+                userRecommendationsModule,
                 dataStoreModule,
                 domainApi,
                 authModule,
@@ -84,5 +87,8 @@ val MobileSdk.IRepoBooking: IRepoBooking
     get() = MobileSdk.di.instance()
 
 val MobileSdk.IRepoFilters: IRepoFilters
+    get() = MobileSdk.di.instance()
+
+val MobileSdk.IRepoRecomendetion: IRepoUserRecommendation
     get() = MobileSdk.di.instance()
 

@@ -1,0 +1,17 @@
+import kotlin.collections.List;
+import kotlin.String;
+
+CREATE TABLE UserRecomendations(
+    idUser TEXT,
+    destrict TEXT AS List<String>,
+    typeEvent TEXT
+);
+
+
+setUserRecomendations:
+    INSERT OR REPLACE INTO UserRecomendations(idUser, destrict, typeEvent)
+    VALUES (?,?,?);
+
+
+getUserRecomendations:
+    SELECT * FROM UserRecomendations;
