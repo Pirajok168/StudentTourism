@@ -55,5 +55,5 @@ dependencies{
     //compose nav
     implementation ("androidx.navigation:navigation-compose:2.5.3")
 
-
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
 }
