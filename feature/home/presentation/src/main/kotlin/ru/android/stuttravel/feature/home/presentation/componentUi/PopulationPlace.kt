@@ -68,26 +68,27 @@ fun PopulationPlace(
                 )*/
             }
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
+            if(racing.isNotEmpty()) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                ) {
 
-                ElevatedAssistChip(
-                    onClick = { },
-                    label = { Text(text = racing) },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Star,
-                            contentDescription = "",
-                            tint = Color(0xFFF0DC31)
+                    ElevatedAssistChip(
+                        onClick = { },
+                        label = { Text(text = racing) },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Star,
+                                contentDescription = "",
+                                tint = Color(0xFFF0DC31)
                             )
-                    },
+                        },
 
-                    )
+                        )
+                }
             }
-
 
             Box(
                 modifier = Modifier
