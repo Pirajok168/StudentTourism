@@ -24,7 +24,7 @@ private class Notification(context: Context, body: String, title: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Заявки"
             val descriptionText = "Ваши заявки"
-            val importance = NotificationManager.IMPORTANCE_LOW
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel("Заявки", name, importance).apply {
                 description = descriptionText
             }
@@ -40,7 +40,7 @@ private class Notification(context: Context, body: String, title: String) {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(title)
             .setContentText(body)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
 
 
     fun show(context: Context, id: String) {
@@ -64,8 +64,6 @@ class NotificationWorker @AssistedInject constructor(
 ) : CoroutineWorker(appContext, workerParams) {
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        val n = Notification(appContext, body = "", title = "it.name")
-        n.show(appContext, "54")
 
 
         repo.getNotifications().forEach {

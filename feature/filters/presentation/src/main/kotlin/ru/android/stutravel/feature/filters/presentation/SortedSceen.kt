@@ -156,25 +156,7 @@ fun SortedScreen(
                         }
                     }
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        contentAlignment = Alignment.TopStart
-                    ) {
-                        Surface(
-                            color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.9f),
-                            modifier = Modifier
-                                .padding(16.dp),
-                            shape = MaterialTheme.shapes.small
-                        ) {
-                            Text(
-                                text = "1200-1300 р.",
-                                modifier = Modifier
-                                    .padding(horizontal = 8.dp, vertical = 6.dp)
 
-                            )
-                        }
-                    }
                 }
 
 
