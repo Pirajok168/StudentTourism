@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.placeholder.material.placeholder
 import ru.android.stutravel.feature.filters.presentation.SortedScreen
 import ru.android.stuttravel.feature.home.presentation.componentUi.EventCard
 import ru.android.stuttravel.feature.home.presentation.componentUi.PopulationPlace
@@ -44,12 +46,12 @@ data class WhatIsLook(
 @Composable
 fun HomeScreen(
     padding: PaddingValues = PaddingValues(),
-    homeViewModel: HomeViewModel =viewModel(),
+    homeViewModel: HomeViewModel = viewModel(),
     toViewAboutHouse: (idDormitories: String) -> Unit = {},
     toFiltersScreen: () -> Unit,
-    toEventsScreen: () ->Unit,
-    toNewsScreen: ()->Unit,
-    toViewAboutEvent:(idEvent:String, idUni: String) ->Unit
+    toEventsScreen: () -> Unit,
+    toNewsScreen: () -> Unit,
+    toViewAboutEvent: (idEvent: String, idUni: String) -> Unit
 ) {
     val uiState = homeViewModel.homeState
     val list by homeViewModel.filteredList.collectAsState(initial = emptyList())
@@ -58,7 +60,7 @@ fun HomeScreen(
             homeViewModel.event(Event.LoadDisplayData)
         }
 
-        if(uiState.isErrorRecommended == null && uiState.recommendedDormitories.isEmpty()){
+        if (uiState.isErrorRecommended == null && uiState.recommendedDormitories.isEmpty()) {
             homeViewModel.event(Event.LoadRecommended)
         }
 
@@ -132,7 +134,7 @@ fun HomeScreen(
                             verticalAlignment = Alignment.CenterVertically,
 
                             ) {
-                            AnimatedVisibility(visible = uiState.isSearch ) {
+                            AnimatedVisibility(visible = uiState.isSearch) {
                                 Box(
                                     modifier = Modifier
                                         .clip(CircleShape)
@@ -201,16 +203,15 @@ fun HomeScreen(
                                                     if (it.hasFocus)
                                                         homeViewModel.event(Event.Search)
                                                 },
-                                            decorationBox = {
-                                                    innerTextField ->
-                                                if (uiState.searchValue.isEmpty()){
+                                            decorationBox = { innerTextField ->
+                                                if (uiState.searchValue.isEmpty()) {
                                                     Text(
                                                         text = "Введите город",
                                                     )
                                                 }
                                                 innerTextField()
                                             }
-                                            )
+                                        )
                                         IconButton(
                                             onClick = {
                                                 homeViewModel.event(Event.Search)
@@ -262,25 +263,44 @@ fun HomeScreen(
                     )
                 }
 
-                item{
+                item {
                     LazyRow(
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         contentPadding = PaddingValues(16.dp)
-                    ){
-                        items(uiState.recommendedDormitories){
-                            PopulationPlace(
-                                Modifier
-                                    .size(190.dp, 260.dp),
-                                title = it.name,
-                                city = it.city.orEmpty(),
-                                photoUrl = it.photo,
-                                racing = "",
-                                onClick = {
-                                    toViewAboutHouse(it.idDormitories)
-                                },
+                    ) {
+                        if (uiState.recommendedDormitories.isNotEmpty()) {
+                            items(uiState.recommendedDormitories) {
+                                PopulationPlace(
+                                    Modifier
+                                        .size(190.dp, 260.dp),
+                                    title = it.name,
+                                    city = it.city.orEmpty(),
+                                    photoUrl = it.photo,
+                                    racing = "",
+                                    onClick = {
+                                        toViewAboutHouse(it.idDormitories)
+                                    },
 
-                                )
+                                    )
+                            }
+                        } else {
+                            items(5) {
+                                Surface(
+                                    modifier = Modifier.size(
+                                        190.dp, 260.dp
+                                    )
+                                        .placeholder(
+                                            visible = true,
+                                            shape = MaterialTheme.shapes.medium
+                                        ),
+                                    shape = MaterialTheme.shapes.medium
+                                ){
+
+                                }
+                            }
+
                         }
+
                     }
                 }
 
@@ -302,19 +322,37 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         contentPadding = PaddingValues(16.dp)
                     ) {
-                        items(uiState.mostPopular, key = { it.city }) {
-                            PopulationPlace(
-                                Modifier
-                                    .size(190.dp, 260.dp),
-                                title = it.title,
-                                city = it.city,
-                                photoUrl = it.image,
-                                racing = it.rating.toString(),
-                                onClick = {
-                                    toViewAboutHouse(it.idDormitories)
+                        if(uiState.mostPopular.isNotEmpty()){
+                            items(uiState.mostPopular, key = { it.city }) {
+                                PopulationPlace(
+                                    Modifier
+                                        .size(190.dp, 260.dp),
+                                    title = it.title,
+                                    city = it.city,
+                                    photoUrl = it.image,
+                                    racing = it.rating.toString(),
+                                    onClick = {
+                                        toViewAboutHouse(it.idDormitories)
+                                    }
+                                )
+                            }
+                        }else{
+                            items(5) {
+                                Surface(
+                                    modifier = Modifier.size(
+                                        190.dp, 260.dp
+                                    )
+                                        .placeholder(
+                                            visible = true,
+                                            shape = MaterialTheme.shapes.medium
+                                        ),
+                                    shape = MaterialTheme.shapes.medium
+                                ){
+
                                 }
-                            )
+                            }
                         }
+
                     }
 
 
@@ -348,14 +386,14 @@ fun HomeScreen(
                     ) {
                         listIcon.forEach {
                             WhatIsLookCard(label = it.label, icon = it.icon) {
-                                when(it.label){
-                                   "События" -> {
-                                       toEventsScreen()
-                                   }
-                                    "Жильё" ->{
+                                when (it.label) {
+                                    "События" -> {
+                                        toEventsScreen()
+                                    }
+                                    "Жильё" -> {
                                         homeViewModel.event(Event.Search)
                                     }
-                                    "Новости"->{
+                                    "Новости" -> {
                                         toNewsScreen()
                                     }
                                 }
@@ -381,17 +419,35 @@ fun HomeScreen(
                         contentPadding = PaddingValues(16.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        items(uiState.listEvent) {
-                            EventCard(modifier = Modifier
-                                .size(230.dp, 230.dp),
-                                image = it.photos,
-                                label = it.name,
-                                it.type,
-                                toViewAboutEvent={
-                                    toViewAboutEvent(it.id, it.idUniversity)
+                        if(uiState.listEvent.isNotEmpty()){
+                            items(uiState.listEvent) {
+                                EventCard(modifier = Modifier
+                                    .size(230.dp, 230.dp),
+                                    image = it.photos,
+                                    label = it.name,
+                                    it.type,
+                                    toViewAboutEvent = {
+                                        toViewAboutEvent(it.id, it.idUniversity)
+                                    }
+                                )
+                            }
+                        }else{
+                            items(5) {
+                                Surface(
+                                    modifier = Modifier.size(
+                                        190.dp, 260.dp
+                                    )
+                                        .placeholder(
+                                            visible = true,
+                                            shape = MaterialTheme.shapes.medium
+                                        ),
+                                    shape = MaterialTheme.shapes.medium
+                                ){
+
                                 }
-                            )
+                            }
                         }
+
                     }
 
                 }

@@ -56,5 +56,6 @@ dependencies{
     //compose nav
     implementation ("androidx.navigation:navigation-compose:2.5.3")
 
+    implementation ("com.google.accompanist:accompanist-placeholder-material:0.29.1-alpha")
 
 }
