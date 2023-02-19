@@ -22,7 +22,7 @@ import ru.android.stuttravel.feature.auth.presentation.viewmodel.AuthViewModel
 import ru.android.stuttravel.feature.auth.presentation.viewmodel.Event
 import ru.shared.feature.auth.data.model.TypeUser
 
-@OptIn(ExperimentalAnimationGraphicsApi::class)
+
 @Composable
 fun SplashScreen(
     onAuthorized: (typeUser: TypeUser) -> Unit,
@@ -30,13 +30,9 @@ fun SplashScreen(
     authViewModel: AuthViewModel = viewModel()
 ) {
     val uiState = authViewModel.authState
-    val image = AnimatedImageVector.animatedVectorResource(R.drawable.avd_anim)
-    var atEnd by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         authViewModel.event(Event.ToRefreshToken)
-        if(!atEnd){
-            atEnd = true
-        }
+
     }
 
     LaunchedEffect(uiState.isAuthorized){
@@ -56,9 +52,9 @@ fun SplashScreen(
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             Image(
-                painter = rememberAnimatedVectorPainter(image, atEnd),
+                painter = painterResource(id = R.drawable.logo_stud),
                 contentDescription = "",
-                modifier = Modifier
+
                 )
         }
 

@@ -13,6 +13,7 @@ import ru.android.stuttravel.feature.booking.presentation.navigation.AllBooking
 import ru.android.stuttravel.feature.booking.presentation.navigation.BookingRoutes
 import ru.android.stuttravel.feature.home.presentation.navigation.HomeRoutes
 import ru.android.stuttravel.feature.home.presentation.navigation.homeNavGraph
+import ru.android.stuttravel.feature.news.presentation.navigation.NewsNavGraph
 import ru.android.stuttravel.feature.profile.presentation.navigation.ProfileRoutes
 import ru.android.stuttravel.feature.profile.presentation.navigation.profileNavGraph
 
@@ -62,11 +63,13 @@ fun NavGraphBuilder.InsideNavGraph(
                         toFiltersScreen,
                         toEventsScreen,
                         toNewsScreen = {
-
+                            inlineNavController.navigate("newsScreen")
                         }, toViewAboutEvent=toViewAboutEvent)
                     profileNavGraph(inlineNavController, padding)
 
                     AllBooking(padding)
+
+                    NewsNavGraph(inlineNavController, padding)
                 },
                 startDestination = HomeRoutes.Root
             )

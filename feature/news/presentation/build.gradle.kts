@@ -4,7 +4,7 @@ plugins{
 }
 
 android {
-    namespace = "ru.android.studenttourism.feature.news.presentation"
+    namespace = "ru.android.stuttravel.feature.news.presentation"
     compileSdk = 33
 
     defaultConfig {
@@ -35,6 +35,7 @@ dependencies{
     implementation(project(":core:navigation"))
     implementation(project(":core:theme"))
     implementation(project(mapOf("path" to ":shared")))
+    //  implementation(project(":umbrelladi"))
     val compose_version = "1.3.3"
     implementation ("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")

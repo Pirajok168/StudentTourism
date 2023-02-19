@@ -18,6 +18,8 @@ import ru.shared.feature.filters.data.moduleFilters
 import ru.shared.feature.home.data.IRepositoryHome
 import ru.shared.feature.home.data.homeDormitoriesModule
 import ru.shared.feature.labs.data.searchLabsModule
+import ru.shared.feature.news.data.IRepoNews
+import ru.shared.feature.news.data.newsModule
 import ru.shared.feature.profile.data.IRepoProfile
 import ru.shared.feature.profile.data.profileModule
 import ru.shared.feature.seeInfoDormitories.data.IRepoGetInfo
@@ -57,6 +59,7 @@ object MobileSdk {
                 homeDormitoriesModule,
                 infoModule,
                 bookingModule,
+                newsModule,
             )
         }.direct
 
@@ -91,4 +94,8 @@ val MobileSdk.IRepoFilters: IRepoFilters
 
 val MobileSdk.IRepoUserRecommendation: IRepoUserRecommendation
     get() = MobileSdk.di.instance()
+
+val MobileSdk.IRepoNews: IRepoNews
+    get() = MobileSdk.di.instance()
+
 
