@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -58,16 +59,20 @@ fun AboutEvent(
                 title = {},
                 navigationIcon = {
 
-                    IconButton(onClick = onBack) {
+                    FilledTonalIconButton(onClick = onBack) {
                         Icon(imageVector = Icons.Outlined.ArrowBack, contentDescription = "")
                     }
-                }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color.Transparent
+                )
+
             )
         }
     ) {
        Column(
            modifier = Modifier
-               .padding(it)
+               .padding(bottom = it.calculateBottomPadding())
                .verticalScroll(rememberScrollState())
        ) {
            if (state.events != null)
